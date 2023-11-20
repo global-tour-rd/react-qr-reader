@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDirs": ["src"],
     "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": false,
     "noImplicitThis": false,
@@ -25,6 +25,6 @@
     "declarationDir": "types",
     "emitDeclarationOnly": true
   },
-  "include": ["src/**/*", "old.js"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

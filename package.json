@@ -1,14 +1,11 @@
 {
   "name": "react-qr-reader",
-  "version": "3.0.0-beta-1",
+  "version": "3.0.1",
   "description": "A React Component for reading QR codes from the webcam",
   "scripts": {
+    "prepare": "rollup -c",
     "build": "rollup -c",
-    "prepublish": "yarn build",
-    "lint": "eslint --fix 'src/**'",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "lint": "eslint --fix 'src/**'"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -23,6 +20,13 @@
     "qrcode",
     "qrreader"
   ],
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
   "author": "thomas billiet",
   "license": "MIT",
   "bugs": {
@@ -30,65 +34,38 @@
   },
   "homepage": "https://github.com/react-qr-reader/react-qr-reader#readme",
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@zxing/browser": "0.0.7",
-    "@zxing/library": "^0.18.3",
-    "rollup": "^2.67.2"
+    "@zxing/browser": "^0.1.4",
+    "@zxing/library": "^0.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.0",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-typescript": "^8.3.0",
-    "@storybook/addon-essentials": "^6.1.21",
-    "@storybook/react": "^6.1.21",
-    "@storybook/storybook-deployer": "^2.8.10",
-    "@types/react": "^16.9.49",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
-    "eslint": "^7.18.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.1.2",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.3.0",
-    "prettier": "^2.1.1",
-    "react": "^16.13.1",
-    "react-docgen-typescript-loader": "^3.7.2",
-    "react-dom": "^16.13.1",
-    "rollup-plugin-dts": "^4.1.0",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@qortal/rollup-plugin-web-worker-loader": "^1.6.5",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "0.4.4",
+    "@rollup/plugin-typescript": "11.1.5",
+    "@types/react": "^18.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^2.8.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rollup": "4.0.2",
+    "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-web-worker-loader": "^1.6.1",
-    "source-map-explorer": "^2.5.0",
-    "ts-loader": "^8.0.3",
-    "typescript": "^4.0.2"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,json,css,md,scss}": [
-      "prettier --write",
-      "git add"
-    ]
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4"
   }
 }

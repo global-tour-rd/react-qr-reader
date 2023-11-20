@@ -1,15 +1,15 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import { terser } from 'rollup-plugin-terser';
-import external from 'rollup-plugin-peer-deps-external';
-import dts from 'rollup-plugin-dts';
-import webWorkerLoader from 'rollup-plugin-web-worker-loader';
+const resolve = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const typescript = require('@rollup/plugin-typescript');
+const terser = require('@rollup/plugin-terser');
+const external = require('rollup-plugin-peer-deps-external');
+const { dts } = require('rollup-plugin-dts');
+const webWorkerLoader = require('@qortal/rollup-plugin-web-worker-loader');
 
 const packageJson = require('./package.json');
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
-export default [
+module.exports = [
   {
     input: 'src/index.ts',
     output: [

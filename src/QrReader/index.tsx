@@ -6,21 +6,19 @@ import { useQrReader } from './hooks';
 import { QrReaderProps } from '../types';
 
 export const QrReader: React.FC<QrReaderProps> = ({
-                                                    videoContainerStyle,
-                                                    containerStyle,
-                                                    videoStyle,
-                                                    constraints,
-                                                    ViewFinder,
-                                                    scanDelay,
-                                                    className,
-                                                    onReady,
-                                                    onResult,
-                                                    onResultNone,
-                                                    onError,
-                                                    videoId,
-                                                  }) => {
-  console.log('[react-qr-reader] Component:', constraints);
-
+  videoContainerStyle,
+  containerStyle,
+  videoStyle,
+  constraints,
+  ViewFinder,
+  scanDelay,
+  className,
+  onReady,
+  onResult,
+  onResultNone,
+  onError,
+  videoId,
+}) => {
   useQrReader(
     {
       constraints,

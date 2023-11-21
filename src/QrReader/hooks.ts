@@ -71,5 +71,5 @@ export const useQrReader: UseQrReaderHook = (
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...deps]);
+  }, deps);
 };

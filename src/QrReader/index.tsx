@@ -13,15 +13,32 @@ export const QrReader: React.FC<QrReaderProps> = ({
   ViewFinder,
   scanDelay,
   className,
+  onReady,
   onResult,
+  onResultNone,
+  onError,
   videoId,
 }) => {
-  useQrReader({
-    constraints,
-    scanDelay,
-    onResult,
-    videoId,
-  });
+  useQrReader(
+    {
+      constraints,
+      scanDelay,
+      onReady,
+      onResult,
+      onResultNone,
+      onError,
+      videoId,
+    },
+    [
+      JSON.stringify(constraints),
+      scanDelay,
+      onReady,
+      onResult,
+      onResultNone,
+      onError,
+      videoId,
+    ]
+  );
 
   return (
     <section className={className} style={containerStyle}>

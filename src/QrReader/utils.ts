@@ -12,13 +12,17 @@ export const isMediaDevicesSupported = () => {
 };
 
 export const isValidType = (value: any, name: string, type: string) => {
-  const isValid = typeof value === type;
+  if (value === undefined || value === null) {
+    return false;
+  } else {
+    const isValid = typeof value === type;
 
-  if (!isValid) {
-    console.warn(
-      `[ReactQrReader]: Expected "${name}" to be a of type "${type}".`
-    );
+    if (!isValid) {
+      console.warn(
+        `[ReactQrReader]: Expected "${name}" to be a of type "${type}".`
+      );
+    }
+
+    return isValid;
   }
-
-  return isValid;
 };

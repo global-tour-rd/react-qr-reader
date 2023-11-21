@@ -55,7 +55,6 @@ export const QrReader: React.FC<QrReaderProps> = ({
           style={{
             ...styles.video,
             ...videoStyle,
-            transform: constraints?.facingMode === 'user' && 'scaleX(-1)',
           }}
         />
       </div>

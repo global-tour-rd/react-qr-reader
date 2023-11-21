@@ -18,6 +18,7 @@ export const useQrReader: UseQrReaderHook = (
   },
   deps: DependencyList = []
 ) => {
+  console.log('[react-qr-reader] Hook:', video);
   const controlsRef: MutableRefObject<IScannerControls> = useRef(null);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ export const useQrReader: UseQrReaderHook = (
     }
 
     return () => {
+      console.log('[react-qr-reader] Hook removed.');
       controlsRef.current?.stop();
     };
 

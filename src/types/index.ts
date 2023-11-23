@@ -1,4 +1,4 @@
-import { BrowserQRCodeReader } from '@zxing/browser';
+import { IScannerControls } from '@zxing/browser';
 import { Result } from '@zxing/library';
 import { DependencyList } from 'react';
 
@@ -57,7 +57,11 @@ export type OnReadyFunction = (
   /**
    * The instance of the QR browser reader
    */
-  codeReader?: BrowserQRCodeReader
+  controls?: IScannerControls,
+  /**
+   * The instance of media stream
+   */
+  stream?: MediaStream
 ) => void;
 
 export type OnResultFunction = (

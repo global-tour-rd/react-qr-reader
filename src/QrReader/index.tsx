@@ -29,15 +29,7 @@ export const QrReader: React.FC<QrReaderProps> = ({
       onError,
       videoId,
     },
-    [
-      JSON.stringify(constraints),
-      scanDelay,
-      onReady,
-      onResult,
-      onResultNone,
-      onError,
-      videoId,
-    ]
+    [JSON.stringify(constraints), scanDelay, videoId]
   );
 
   return (

@@ -5,7 +5,6 @@ import { UseQrReaderHook } from '../types';
 
 import { isMediaDevicesSupported, isValidType } from './utils';
 
-// TODO: add support for debug logs
 export const useQrReader: UseQrReaderHook = (
   {
     scanDelay: delayBetweenScanAttempts,
@@ -18,56 +17,57 @@ export const useQrReader: UseQrReaderHook = (
   },
   deps: DependencyList = []
 ) => {
+  const streamRef: MutableRefObject<MediaStream> = useRef(null);
   const controlsRef: MutableRefObject<IScannerControls> = useRef(null);
 
   useEffect(() => {
-    const codeReader = new BrowserQRCodeReader(null, {
+    console.log('Triggered!!!');
+
+    const reader = new BrowserQRCodeReader(null, {
       delayBetweenScanAttempts,
     });
 
-    if (
-      !isMediaDevicesSupported() &&
-      isValidType(onError, 'onError', 'function')
-    ) {
+    const isSupported = isMediaDevicesSupported();
+    const isValidConstraints = isValidType(video, 'constraints', 'object');
+
+    if (!isSupported) {
       const message =
         'MediaDevices API has no support for your browser. You can fix this by running "npm i webrtc-adapter"';
-
-      onError(new Error(message));
+      onError && onError(new Error(message));
     }
 
-    if (isValidType(video, 'constraints', 'object')) {
-      codeReader
-        .decodeFromConstraints({ video }, videoId, (result, error) => {
-          if (result) {
-            if (isValidType(onResult, 'onResult', 'function')) {
-              onResult(result);
-            }
-            return;
-          }
-
-          if (error) {
-            if (isValidType(onResultNone, 'onResultNone', 'function')) {
-              onResultNone(error);
-            }
-            return;
-          }
+    if (isSupported && isValidConstraints) {
+      navigator.mediaDevices
+        .getUserMedia({ audio: false, video: video })
+        .then((stream) => {
+          streamRef.current = stream;
+          reader
+            .decodeFromStream(stream, videoId, (result, error) => {
+              if (result) {
+                onResult && onResult(result);
+                return;
+              }
+              if (error) {
+                onResultNone && onResultNone(error);
+                return;
+              }
+            })
+            .then((controls: IScannerControls) => {
+              controlsRef.current = controls;
+              onReady && onReady(controls, stream);
+            })
+            .catch((error) => {
+              onError && onError(error);
+            });
         })
-        .then((controls: IScannerControls) => {
-          if (isValidType(onReady, 'onReady', 'function')) {
-            onReady(codeReader);
-          }
-
-          controlsRef.current = controls;
-        })
-        .catch((error: Error) => {
-          if (isValidType(onError, 'onError', 'function')) {
-            onError(error);
-          }
+        .catch((error) => {
+          onError && onError(error);
         });
     }
 
     return () => {
       controlsRef.current?.stop();
+      streamRef.current?.getTracks()?.forEach((track) => track?.stop());
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

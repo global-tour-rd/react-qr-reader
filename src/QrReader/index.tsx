@@ -41,8 +41,8 @@ export const QrReader: React.FC<QrReaderProps> = ({
           ...videoContainerStyle,
         }}
       >
-        {!!ViewFinder && <ViewFinder />}
         {!!ViewLoading && <ViewLoading />}
+        {!!ViewFinder && <ViewFinder />}
         <video
           muted
           id={videoId}

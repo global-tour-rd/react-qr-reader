@@ -24,13 +24,13 @@ export type QrReaderProps = {
    */
   onError?: OnErrorFunction;
   /**
-   * Property that represents the view finder component
-   */
-  ViewFinder?: (props: any) => React.ReactElement<any, any> | null;
-  /**
    * Property that represents the view loading component
    */
   ViewLoading?: (props: any) => React.ReactElement<any, any> | null;
+  /**
+   * Property that represents the view finder component
+   */
+  ViewFinder?: (props: any) => React.ReactElement<any, any> | null;
   /**
    * Property that represents the scan period
    */

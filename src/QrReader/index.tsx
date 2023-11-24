@@ -11,6 +11,7 @@ export const QrReader: React.FC<QrReaderProps> = ({
   videoStyle,
   constraints,
   ViewFinder,
+  ViewLoading,
   scanDelay,
   className,
   onReady,
@@ -29,15 +30,7 @@ export const QrReader: React.FC<QrReaderProps> = ({
       onError,
       videoId,
     },
-    [
-      JSON.stringify(constraints),
-      scanDelay,
-      onReady,
-      onResult,
-      onResultNone,
-      onError,
-      videoId,
-    ]
+    [JSON.stringify(constraints), scanDelay, videoId]
   );
 
   return (
@@ -48,6 +41,7 @@ export const QrReader: React.FC<QrReaderProps> = ({
           ...videoContainerStyle,
         }}
       >
+        {!!ViewLoading && <ViewLoading />}
         {!!ViewFinder && <ViewFinder />}
         <video
           muted

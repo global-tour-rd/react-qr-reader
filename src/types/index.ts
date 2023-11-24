@@ -28,6 +28,10 @@ export type QrReaderProps = {
    */
   ViewFinder?: (props: any) => React.ReactElement<any, any> | null;
   /**
+   * Property that represents the view loading component
+   */
+  ViewLoading?: (props: any) => React.ReactElement<any, any> | null;
+  /**
    * Property that represents the scan period
    */
   scanDelay?: number;
